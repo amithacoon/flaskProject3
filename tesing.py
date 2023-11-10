@@ -7,16 +7,12 @@ import random
 import matplotlib.pyplot as plt
 import datetime
 
-# Directory containing your .wav files
 FILES_DIR = 'Testing files'
 
-# URL of your Flask application
 APP_URL = 'http://localhost:5000'
 
-# Path to your chromedriver
 CHROME_DRIVER_PATH = 'C:/webdrivers/chromedriver.exe'
 
-# Function to upload a file and measure the time taken
 def upload_random_file(_):
     file_name = random.choice(os.listdir(FILES_DIR))
     driver = webdriver.Chrome(executable_path=CHROME_DRIVER_PATH)
@@ -39,10 +35,8 @@ def upload_random_file(_):
 
     return end_time - start_time  # Return the time taken for upload
 
-# Number of uploads to perform
 num_uploads = 40
 
-# Use ThreadPoolExecutor to upload files in parallel
 times_taken = []
 with ThreadPoolExecutor(max_workers=10) as executor:
     results = executor.map(upload_random_file, range(num_uploads))
@@ -51,7 +45,6 @@ with ThreadPoolExecutor(max_workers=10) as executor:
 current_timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 filename = f'upload_performance_{current_timestamp}.png'
 
-# Plotting the results
 plt.figure(figsize=(10, 6))
 plt.hist(times_taken, bins=20, color='skyblue', edgecolor='black')
 plt.title('File Upload Performance')
