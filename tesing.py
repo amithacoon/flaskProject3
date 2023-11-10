@@ -5,6 +5,7 @@ import os
 import time
 import random
 import matplotlib.pyplot as plt
+import datetime
 
 # Directory containing your .wav files
 FILES_DIR = 'Testing files'
@@ -39,13 +40,16 @@ def upload_random_file(_):
     return end_time - start_time  # Return the time taken for upload
 
 # Number of uploads to perform
-num_uploads = 10
+num_uploads = 40
 
 # Use ThreadPoolExecutor to upload files in parallel
 times_taken = []
-with ThreadPoolExecutor(max_workers=5) as executor:
+with ThreadPoolExecutor(max_workers=10) as executor:
     results = executor.map(upload_random_file, range(num_uploads))
     times_taken = list(results)
+
+current_timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+filename = f'/mnt/data/upload_performance_{current_timestamp}.png'
 
 # Plotting the results
 plt.figure(figsize=(10, 6))
@@ -54,5 +58,5 @@ plt.title('File Upload Performance')
 plt.xlabel('Time Taken (s)')
 plt.ylabel('Number of Uploads')
 plt.grid(True)
-plt.savefig('/upload_performance.png')
+plt.savefig(filename)
 plt.show()
