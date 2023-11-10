@@ -3,6 +3,7 @@ from concurrent.futures import ProcessPoolExecutor
 from processing.consumer import process_audio
 from utils.queue_utils import audio_queue, result_queue
 
+number_of_workers = 4
 manager = Manager()
 audio_queue = manager.Queue()  # Queue for audio files waiting to be processed
 result_queue = manager.Queue()  # Queue for storing processed results
