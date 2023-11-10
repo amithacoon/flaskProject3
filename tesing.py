@@ -49,7 +49,7 @@ with ThreadPoolExecutor(max_workers=10) as executor:
     times_taken = list(results)
 
 current_timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-filename = f'/mnt/data/upload_performance_{current_timestamp}.png'
+filename = f'upload_performance_{current_timestamp}.png'
 
 # Plotting the results
 plt.figure(figsize=(10, 6))
