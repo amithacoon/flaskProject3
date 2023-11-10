@@ -39,7 +39,7 @@ def upload_random_file(_):
     return end_time - start_time  # Return the time taken for upload
 
 # Number of uploads to perform
-num_uploads = 100
+num_uploads = 10
 
 # Use ThreadPoolExecutor to upload files in parallel
 times_taken = []
@@ -54,5 +54,5 @@ plt.title('File Upload Performance')
 plt.xlabel('Time Taken (s)')
 plt.ylabel('Number of Uploads')
 plt.grid(True)
-plt.savefig('/mnt/data/upload_performance.png')
+plt.savefig('/upload_performance.png')
 plt.show()
