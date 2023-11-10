@@ -2,7 +2,7 @@ from multiprocessing import Process
 from processing.consumer import process_audio
 from utils.queue_utils import audio_queue
 
-# Let's keep a list of all our running tasks
+#  keep a list of all our running tasks
 processes = []
 
 def enqueue_audio(filepath):
